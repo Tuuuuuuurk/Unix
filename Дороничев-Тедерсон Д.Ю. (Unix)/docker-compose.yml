@@ -1,0 +1,24 @@
+version: '3.2'
+services:
+    jenkins:
+        container_name: jenkins
+        build:
+            context: jenkins
+            dockerfile: Dockerfile-alpine
+            args:
+               JENKINS_VERSION: 2.235
+        ports:
+           - 8080:8080
+           - 50000:50000
+        volumes:
+           - /tmp:/var/jenkins_home/secrets/
+    tuleap:
+        container_name: tuleap
+        build:
+            context: tuleap
+    kallithea:
+        container_name: kalithea
+        build:
+            context: kalithea
+        ports:
+            - 3080:80
